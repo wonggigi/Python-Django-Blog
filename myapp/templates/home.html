@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>欢迎光临</title>
+</head>
+<style>
+* {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+ul{
+	list-style: none;
+}
+
+.header{
+  position: fixed;
+  background-color: #45b97c;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+}
+.navbar{
+	list-style: none;
+	margin-left: 30px;
+}
+.header ul:nth-child(2) {
+	list-style: none;
+	float: right;
+}
+.header li{
+	float: left;
+	padding: 4px 20px;
+}
+.header li a{
+	  color: white;
+	 text-decoration: none;
+}
+
+
+.container{
+	width: 100%;
+	min-height:1900px; 
+}
+
+.container-left{
+	background-color: grey;
+	margin-top: 100px;
+	float: left;
+	width: 30%;
+	
+	min-height: 900px;
+	border-right: 1px solid #dddddd;
+}
+.container-left a{
+	display: block;
+	  color: white;
+	 text-decoration: none;
+}
+.container-right{
+	background-color: grey;
+	margin-top: 100px;
+	margin-left: 30px;
+	float: left;
+	width: 50%;
+	min-height: 1900px;
+}
+#main-topic{
+	height: 80px;
+	border-bottom: 1px solid #dddddd;
+}
+#main-content{
+	min-height: 1200px;
+}
+
+.footer{
+	 background-color: #45b97c;
+	 margin-top: 12%;
+	 width: 100%;
+	height: 50px;
+	 left: 0;
+	 right: 0;
+	 z-index: 9999;
+}
+
+#comment{
+	border-top: 1px solid #dddddd;
+	height: 300px;
+}
+#comment-form{
+	
+	margin-left: 30px;
+}
+
+
+@media screen and (max-width: 790px) {
+.footer{
+	margin-top: 15%;
+}
+}
+
+
+@media screen and (max-width: 956px) {	
+.footer{
+	margin-top: 15%;
+}
+}
+@media screen and (max-width: 690px) {
+	 .footer{
+	margin-top: 25%;
+}
+}
+@media screen and (max-width: 486px) {
+	.container-left{
+		display: none;
+		}
+		.container-right{
+			margin-left: 0px;
+			float: left;
+			width: 100%;
+		}
+		.footer{
+			margin-top: 38%;
+		}
+}
+
+
+
+</style>
+<body>
+<div class="header">
+	<ul class="navbar">
+	<li><a href="#">JavaScript</a></li>
+	<li><a href="#">CSS</a></li>
+	<li><a href="#">Python</a></li>
+	<li><a href="#">NodeJS</a></li>
+	</ul>
+
+	<ul >
+	 <li>
+	     <ul>
+	          <li><a href="#">My GitHub</a></li>
+	          <li><a href="#">My Demo</a></li>
+	         <li><a href="#">My Resume</a></li>
+	           <li><a href="/login">{{username}}</a></li>
+
+	       </ul>
+	 </li>
+	</ul>
+</div>
+
+<div class="container">
+         <div class="container-left">
+         {% for post in posts %}
+         <a href={{ post.url }}>{{ post.title }}</a>
+         {% endfor%}
+         </div>
+         <div class="container-right">
+                    <div  id="main-topic">
+                                   <h2>{{ post.title }}</h2>
+                                   <p>{{ post.timestamp }}</p>
+                    </div>
+                    <div id="main-content">
+                                  <p>{{ post.body }}</p>
+                    </div>
+                    <div  id="comment">
+                      {% for comment in comments %}
+                      <p>{{ comment.username }} reply at {{comment.time}}</p>
+                      <p>{{comment.body}}</p>
+                      <hr>
+                      {% endfor%}
+                        </div>
+
+                    {% if  not username%}
+                    <p><span><a href="/login">登录</a></span>后方能留言</p>
+                    {% else%}
+                    <form method="post" id="comment-form">
+			<p>Your Name:{{ username}}</p>
+			<textarea name="content" rows="5" cols="30"></textarea><br />
+			<input type="submit" value="留言" />
+	     </form>
+                    {% endif %}
+                    </div>
+         </div>
+</div>
+
+<div class="footer">
+                
+</div>
+</body>
+</html>
