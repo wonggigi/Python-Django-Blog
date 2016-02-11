@@ -62,6 +62,28 @@ ul{
 	 padding-left: 5%;
 	 padding-top: 2%;
 }
+
+.displayList{
+               margin-top: 100px;
+	position: fixed;
+	display: block;
+	width: 50%;
+	border-right: 2px solid #dddddd;
+	min-height: 500px;
+                  top: 2%;
+	height :100%;
+	background-color: grey;
+	z-index :9999
+}
+.displayList a{
+	display: block;
+	 color: white;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	 text-decoration: none;
+	 padding-left: 5%;
+	 padding-top: 2%;
+}
+
 .container-right{
 	
 	margin-top: 100px;
@@ -106,6 +128,7 @@ ul{
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #666;
 	margin-left: 20px;
+	margin-top: 80px;
 	
 }
 #comment-form textarea{
@@ -155,8 +178,18 @@ ul{
   }
 }
 
+#maskLayer { 
+background-color:black; 
+width: 100%; 
 
+left: 0; 
+top: 0; 
+filter: alpha(opacity=60); 
+opacity: 0.5; 
+z-index: 1; 
+position: absolute; 
 
+} 
 </style>
 <body>
 <div class="header">
@@ -181,12 +214,18 @@ ul{
 </div>
 
 <div class="container">
+          <div id="left-list-click"> 
+                     <div id="arrow-right">
+                     </div>
+                </div>
          <div class="container-left">
-         {% for post in posts %}
-         <a href={{ post.url }}>{{ post.title }}</a>
-         {% endfor%}
+                        {% for post in posts %}
+                       <a href={{ post.url }}>{{ post.title }}</a>
+                       {% endfor%}
          </div>
+
          <div class="container-right">
+
                     <div  id="main-topic">
                                    <h2>{{ post.title }}</h2>
                                    <p>{{ post.timestamp }}</p>
@@ -219,22 +258,39 @@ ul{
          </div>
 </div>
 
-<div class="footer">
-                
+<div class="footer">               
 </div>
 
-<div id="left-list-click">
-<div id="arrow-right">
+<div id="maskLayer"  style="display: none;"> 
 </div>
-</div>
+
 </body>
 <script>
+var leftListClick = document.getElementById('left-list-click');
+var list = document.getElementsByClassName('container-left')[0];
+var containerRight = document.getElementsByClassName('container-right')[0]
+var maskLayer=document.getElementById('maskLayer');
+function displayMask(argument) {
+	list.setAttribute('class','displayList'); 
+	leftListClick.style.marginLeft = list.offsetWidth + "px"
+	document.getElementById('maskLayer').style.display = 'block';
+	document.getElementById('maskLayer').style.height = document.body.offsetHeight + "px";
+}
+function hiddenMask (argument) {
+	list.setAttribute('class','container-left');
+	document.getElementById('maskLayer').style.display = 'none';
+	leftListClick.style.marginLeft = 0+ "px"
+}
 window.onload = function() {
-	
-	var leftListClick = document.getElementById('left-list-click');
-	leftListClick.addEventListener('touchstart', function(event) {
-		alert("As")
-	}, false);
+	leftListClick.addEventListener('touchstart', displayMask, false);
+	leftListClick.addEventListener('click', displayMask, false);
+	maskLayer.addEventListener('click',hiddenMask,false);
+	maskLayer.addEventListener('touchstart',hiddenMask,false)
+}
+window.onresize=function  (argument) {
+	if (document.body.offsetWidth>486&&list.className=="displayList") {
+		hiddenMask();
+	}
 }
 </script>
 </html>
