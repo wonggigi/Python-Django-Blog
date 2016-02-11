@@ -119,7 +119,8 @@ def home(request, url='/'):
                 blog.url = "/article/" + blog.title
             if url == '/':
                 comments=Comment.objects.filter(title=blog_list[0].title)
-                print(comments[0].body+","+comments[1].body)
+                #print(blog_list[0].body)
+
                 return render_to_response('home.html', {'posts': blog_list, 'post': blog_list[0], 'username': username,'comments':comments})
             else:
                 thisBlog = BlogsPost.objects.get(title=url)

@@ -42,88 +42,117 @@ ul{
 
 .container{
 	width: 100%;
-	min-height:1900px; 
+	overflow:hidden
+	
 }
 
 .container-left{
-	background-color: grey;
+	
 	margin-top: 100px;
 	float: left;
 	width: 30%;
-	
-	min-height: 900px;
-	border-right: 1px solid #dddddd;
+	border-right: 2px solid #dddddd;
+	min-height: 500px;
 }
 .container-left a{
 	display: block;
-	  color: white;
+	 color: #444444;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	 text-decoration: none;
+	 padding-left: 5%;
+	 padding-top: 2%;
 }
 .container-right{
-	background-color: grey;
+	
 	margin-top: 100px;
 	margin-left: 30px;
 	float: left;
 	width: 50%;
-	min-height: 1900px;
+
 }
 #main-topic{
 	height: 80px;
-	border-bottom: 1px solid #dddddd;
+	border-bottom: 2px solid #dddddd;
 }
 #main-content{
-	min-height: 1200px;
+	 color: #444444;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	padding-bottom: 40px;
 }
 
 .footer{
 	 background-color: #45b97c;
-	 margin-top: 12%;
+	 margin-top: 3%;
 	 width: 100%;
-	height: 50px;
+	height: 70px;
 	 left: 0;
 	 right: 0;
 	 z-index: 9999;
 }
 
 #comment{
-	border-top: 1px solid #dddddd;
-	height: 300px;
+	padding-top: 18px;
+	font-size: 12px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #666;
+	border-top: 2px solid #dddddd;
+	
+}
+#comment span{
+	font-size: 20px;
 }
 #comment-form{
+	font-size: 18px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #666;
+	margin-left: 20px;
 	
-	margin-left: 30px;
+}
+#comment-form textarea{
+	border-left: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+	border-top: 1px solid #dddddd;
+}
+.comment-item{
+	border-bottom: 1px solid #dddddd;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-left: 20px;
 }
 
 
-@media screen and (max-width: 790px) {
-.footer{
-	margin-top: 15%;
-}
-}
 
-
-@media screen and (max-width: 956px) {	
-.footer{
-	margin-top: 15%;
-}
-}
-@media screen and (max-width: 690px) {
-	 .footer{
-	margin-top: 25%;
-}
-}
 @media screen and (max-width: 486px) {
 	.container-left{
 		display: none;
 		}
 		.container-right{
-			margin-left: 0px;
+			padding-left: 30px;
 			float: left;
 			width: 100%;
 		}
-		.footer{
-			margin-top: 38%;
-		}
+#main-content{
+	font-size: 14px;
+	width: 80%;
+} 
+   #left-list-click{
+     position: fixed;
+     width: 40px;
+     height: 80px;
+    background-color: #45b97c;
+     top: 40%;
+       z-index: 9999;
+}
+#arrow-right {
+    width:0; 
+    height:0; 
+    margin-top: 20px;
+    margin-left: 10px;
+    border-top:20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid white;
+  }
 }
 
 
@@ -144,7 +173,7 @@ ul{
 	          <li><a href="#">My GitHub</a></li>
 	          <li><a href="#">My Demo</a></li>
 	         <li><a href="#">My Resume</a></li>
-	           <li><a href="/login">{{username}}</a></li>
+	           <li><a href="/login">Welcome {{username}} !</a></li>
 
 	       </ul>
 	 </li>
@@ -163,13 +192,17 @@ ul{
                                    <p>{{ post.timestamp }}</p>
                     </div>
                     <div id="main-content">
+                    {% autoescape off %}
                                   {{ post.body }}
+                     {% endautoescape %}
                     </div>
                     <div  id="comment">
+                    <h1>Comments</h1>
                       {% for comment in comments %}
-                      <p>{{ comment.username }} reply at {{comment.time}}</p>
+                      <div class="comment-item">
+                      <p><span>{{ comment.username }}</span> reply at {{comment.time}}</p>
                       <p>{{comment.body}}</p>
-                      <hr>
+                      </div>
                       {% endfor%}
                         </div>
 
@@ -189,5 +222,19 @@ ul{
 <div class="footer">
                 
 </div>
+
+<div id="left-list-click">
+<div id="arrow-right">
+</div>
+</div>
 </body>
+<script>
+window.onload = function() {
+	
+	var leftListClick = document.getElementById('left-list-click');
+	leftListClick.addEventListener('touchstart', function(event) {
+		alert("As")
+	}, false);
+}
+</script>
 </html>

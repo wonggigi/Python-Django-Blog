@@ -28,7 +28,7 @@ class BlogsPost(models.Model):
 
 
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'timestamp','body')
+    list_display = ('title', 'timestamp')
 
 
 class User(models.Model):
