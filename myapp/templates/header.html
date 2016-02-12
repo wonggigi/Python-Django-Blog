@@ -1,0 +1,34 @@
+
+
+<div class="header">
+                <ul  id="header-ul-left">
+                   <li class="header-content"><a>Content</a>
+                     
+	      <ul class="navbar">
+	            <li><a href="#">JavaScript</a></li>
+	            <li><a href="#">CSS</a></li>
+	            <li><a href="#">Python</a></li>
+	            <li><a href="#">NodeJS</a></li>
+	       </ul>
+	    </li>
+	 </ul>
+               
+                
+	
+	    <ul id="header-ul-right">
+	     <li class="header-content"><a>About Me</a>
+	          <ul class="navbar-right">
+	               <li><a href="https://github.com/wonggigi">My GitHub</a></li>
+	               <li><a href="http://www.wonggigi.com:3000/my_project">My Demo</a></li>
+	               <li><a href="http://www.wonggigi.com:3000">My Resume</a></li>
+	                <li><a href="/login">
+	            {% if not username%}
+	                  Login</a></li>
+	                {% else%}
+	                 Welcome {{username}} !</a></li>
+                         {%  endif %}
+	            </ul>
+	            </li>
+	     </ul>
+	
+</div>

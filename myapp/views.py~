@@ -69,15 +69,12 @@ def register(request):
         password = request.POST['password']
         repassword = request.POST['repassword']
         email = request.POST['email']
-        existUser=User.objects.filter(username=username)
-        existEmail=User.objects.filter(email=email)
-        if existUser or existEmail:
-            if existEmail and existUser:
-                return render_to_response('register.html',{'uTip':'该用户名已存在','eTip':'该邮箱已存在'})
-            elif existUser:
-                return render_to_response('register.html',{'uTip':'该用户名已存在'})
-            else:
-                return render_to_response('register.html',{'eTip':'该邮箱已存在'})
+        existUser=User.objects.get(username=username)
+        existEmail=User.objects.get(email=email)
+        if existUser:
+            return render_to_response('register.html',{'uTip':''})
+        else if existEmail
+            return render_to_response('register.html',{'eTip':''})
         else:   
             user = User()
             user.username = username

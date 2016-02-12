@@ -5,17 +5,132 @@
     <title>用户注册</title>
 </head>
   <style type="text/css">
-    body{color:#efd;background:#453;padding:0 5em;margin:0}
-    h1{padding:2em 1em;background:#675}
-    h2{color:#bf8;border-top:1px dotted #fff;margin-top:2em}
-    p{margin:1em 0}
+  
+* {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+ul{
+	list-style: none;
+}
+
+.header{
+  position: fixed;
+  background-color: #45b97c;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+}
+.navbar{
+	list-style: none;
+	margin-left: 30px;
+}
+.header ul:nth-child(2) {
+	list-style: none;
+	float: right;
+}
+.header li{
+	float: left;
+	padding: 4px 20px;
+}
+.header li a{
+	  color: white;
+	 text-decoration: none;
+}
+
+
+.footer{
+	 background-color: #45b97c;
+	 margin-top: 3%;
+	 width: 100%;
+	height: 70px;
+	position: fixed;
+	top: 86%;
+	 left: 0;
+	 right: 0;
+	 z-index: 9999;
+}	
+form,h1{
+	margin-top: 100px;
+}
+
   </style>
 <body>
-<h1>注册页面：</h1>
-<form method = 'post' enctype="multipart/form-data">
+{% include 'header.html' %} 
+<h1>注册</h1>
+<form method = 'post' enctype="multipart/form-data"  onsubmit="return validate_form(this)">
 
-{{uf.as_p}}
+User Name: <input class="input" type="text" name="username" size="30">
+<span id="username-tip">{{uTip}}</span>
+<br />
+
+PassWord: <input class="input"type="text" name="password" size="30">
+<span id="pass-tip"></span>
+<br />
+
+Repeat PassWord: <input class="input" type="text" name="repassword" size="30">
+<span id="repass-tip"></span>
+<br />
+
+Email: <input class="input" type="text" name="email" size="30">
+<span id="email-tip">{{eTip}}</span>
+<br />
+
 <input type="submit" value = "ok" />
 </form>
+
+
+{% include 'footer.html' %} 
 </body>
+<script type="text/javascript">
+	function validate_required(field, txt, i) {
+		//var inputs = document.getElementsByClassName('input')
+		var name = ['username-tip', 'pass-tip', 'repass-tip', 'email-tip']
+			//with(field) {
+		if (i == 0 && field.value.length < 6 && field.value) {
+			document.getElementById(name[i]).innerHTML = "too short";
+			return false
+		}
+
+		if (i == 3) {
+			apos = field.value.indexOf("@")
+			dotpos =field.value.lastIndexOf(".")
+			if (apos < 1 || dotpos - apos < 2) {
+				document.getElementById(name[i]).innerHTML = "Not a valid e-mail address!";
+				return false
+			} else {
+				return true
+			}
+
+		};
+
+		if (field.value == null || field.value == "") {
+			//inputs[0].innerHTML="dasd"
+			document.getElementById(name[i]).innerHTML = txt;
+			return false
+		} else {
+			return true
+		}
+
+		//}
+	}
+
+	function validate_form(thisform) {
+		//with(thisform) {
+		var tip = ['Username', 'Password', 'Repeat PassWord', 'Email']
+		var inputs = document.getElementsByClassName('input')
+		for (var i = 0; i < inputs.length; i++) {
+			if (validate_required(inputs[i], tip[i] + " must be filled out!", i) == false) {
+				inputs[i].focus();
+				return false
+			}
+
+		}
+
+
+		//}
+	}
+</script>
 </html>

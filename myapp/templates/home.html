@@ -24,12 +24,9 @@ ul{
 }
 .navbar{
 	list-style: none;
-	margin-left: 30px;
+	
 }
-.header ul:nth-child(2) {
-	list-style: none;
-	float: right;
-}
+
 .header li{
 	float: left;
 	padding: 4px 20px;
@@ -39,6 +36,60 @@ ul{
 	 text-decoration: none;
 }
 
+.header-content a{
+	display: none;
+}
+.header-content li a{
+	display: block;
+}
+
+
+@media screen and (max-width: 486px) {
+	.header-content{
+		display: block;
+		height: 60px;
+	}
+	#header-ul-right{
+		padding-top: 10px;
+		position: fixed;
+		right: 20px;
+
+	}
+	#header-ul-left{
+		padding-top: 10px;
+		position: fixed;
+		left: 0px;
+	}
+
+	.navbar a,.navbar-right a{
+		padding: 4px 4px 4px 10px;
+	}
+
+	.header-content a{
+	display: block;
+	border-right:none; border-bottom:1px dotted #ccc; background:#45b97c;
+                }
+	.navbar,.navbar-right{
+		display: none;
+		position: absolute;
+		margin-left: -30px;
+		margin-top: 10%;
+		width: 200px;
+	}
+	.header-content:hover ul{
+		display: block;
+	}
+
+	.navbar li,.navbar-right li{
+		float: none;
+	}
+	.header{
+		height: 50px;
+	}
+
+
+
+}
 
 .container{
 	width: 100%;
@@ -72,16 +123,21 @@ ul{
 	min-height: 500px;
                   top: 2%;
 	height :100%;
-	background-color: grey;
+	
 	z-index :9999
+}
+.displayList li{
+	margin-top: 10px;
 }
 .displayList a{
 	display: block;
+	border-right:none; border-bottom:1px dotted #ccc; background:#45b97c;
 	 color: white;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	 text-decoration: none;
 	 padding-left: 5%;
 	 padding-top: 2%;
+
 }
 
 .container-right{
@@ -192,26 +248,7 @@ position: absolute;
 } 
 </style>
 <body>
-<div class="header">
-	<ul class="navbar">
-	<li><a href="#">JavaScript</a></li>
-	<li><a href="#">CSS</a></li>
-	<li><a href="#">Python</a></li>
-	<li><a href="#">NodeJS</a></li>
-	</ul>
-
-	<ul >
-	 <li>
-	     <ul>
-	          <li><a href="#">My GitHub</a></li>
-	          <li><a href="#">My Demo</a></li>
-	         <li><a href="#">My Resume</a></li>
-	           <li><a href="/login">Welcome {{username}} !</a></li>
-
-	       </ul>
-	 </li>
-	</ul>
-</div>
+{% include 'header.html' %}  
 
 <div class="container">
           <div id="left-list-click"> 
@@ -219,9 +256,11 @@ position: absolute;
                      </div>
                 </div>
          <div class="container-left">
+                  <ul>
                         {% for post in posts %}
-                       <a href={{ post.url }}>{{ post.title }}</a>
+                      <li> <a href={{ post.url }}>{{ post.title }}</a></li>
                        {% endfor%}
+                   </ul>
          </div>
 
          <div class="container-right">
@@ -258,9 +297,8 @@ position: absolute;
          </div>
 </div>
 
-<div class="footer">               
-</div>
 
+{% include 'footer.html' %}  
 <div id="maskLayer"  style="display: none;"> 
 </div>
 
@@ -280,12 +318,28 @@ function hiddenMask (argument) {
 	list.setAttribute('class','container-left');
 	document.getElementById('maskLayer').style.display = 'none';
 	leftListClick.style.marginLeft = 0+ "px"
+	document.getElementsByClassName('navbar-right')[0].style.display="none"
+	document.getElementsByClassName('navbar')[0].style.display="none"
 }
 window.onload = function() {
-	leftListClick.addEventListener('touchstart', displayMask, false);
-	leftListClick.addEventListener('click', displayMask, false);
+	alert("-_-还没做完")
+	leftListClick.addEventListener('touchmove', displayMask, false);
+	leftListClick.addEventListener('mousemove', displayMask, false);
 	maskLayer.addEventListener('click',hiddenMask,false);
 	maskLayer.addEventListener('touchstart',hiddenMask,false)
+	document.getElementsByClassName('header-content')[0].addEventListener('touchstart',function  () {
+		document.getElementsByClassName('navbar')[0].style.display="block"
+		displayMask()
+		list.setAttribute('class','container-left');
+		leftListClick.style.marginLeft = 0+ "px"
+	})
+	document.getElementsByClassName('header-content')[1].addEventListener('touchstart',function  () {
+		document.getElementsByClassName('navbar-right')[0].style.display="block"
+		displayMask()
+		list.setAttribute('class','container-left');
+		leftListClick.style.marginLeft = 0+ "px"
+	})
+
 }
 window.onresize=function  (argument) {
 	if (document.body.offsetWidth>486&&list.className=="displayList") {
