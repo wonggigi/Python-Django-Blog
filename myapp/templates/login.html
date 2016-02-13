@@ -1,6 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html >
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>登录</title>
 </head>
 <style type="text/css">
@@ -14,6 +14,7 @@ ul{
 	list-style: none;
 }
 
+
 .header{
   position: fixed;
   background-color: #45b97c;
@@ -24,19 +25,70 @@ ul{
 }
 .navbar{
 	list-style: none;
-	margin-left: 30px;
+	
 }
-.header ul:nth-child(2) {
-	list-style: none;
-	float: right;
-}
+
 .header li{
 	float: left;
 	padding: 4px 20px;
 }
 .header li a{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	  color: white;
 	 text-decoration: none;
+}
+
+.header-content a{
+	display: none;
+}
+.header-content li a{
+	display: block;
+}
+
+
+@media screen and (max-width: 486px) {
+	.header-content{
+		display: block;
+		height: 60px;
+	}
+	#header-ul-right{
+		padding-top: 10px;
+		position: fixed;
+		right: 20px;
+
+	}
+	#header-ul-left{
+		padding-top: 10px;
+		position: fixed;
+		left: 0px;
+	}
+
+	.navbar a,.navbar-right a{
+		padding: 4px 4px 4px 10px;
+	}
+
+	.header-content a{
+	display: block;
+	border-right:none; border-bottom:1px dotted #ccc; background:#45b97c;
+                }
+	.navbar,.navbar-right{
+		display: none;
+		position: absolute;
+		margin-left: -30px;
+		margin-top: 10%;
+		width: 200px;
+	}
+	.header-content:hover ul{
+		display: block;
+	}
+
+	.navbar li,.navbar-right li{
+		float: none;
+	}
+	.header{
+		height: 50px;
+	}
+
 }
 
 

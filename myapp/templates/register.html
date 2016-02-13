@@ -2,10 +2,12 @@
 <html >
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>用户注册</title>
 </head>
   <style type="text/css">
   
+
 * {
 	border: 0;
 	margin: 0;
@@ -14,6 +16,7 @@
 ul{
 	list-style: none;
 }
+
 
 .header{
   position: fixed;
@@ -25,19 +28,70 @@ ul{
 }
 .navbar{
 	list-style: none;
-	margin-left: 30px;
+	
 }
-.header ul:nth-child(2) {
-	list-style: none;
-	float: right;
-}
+
 .header li{
 	float: left;
 	padding: 4px 20px;
 }
 .header li a{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	  color: white;
 	 text-decoration: none;
+}
+
+.header-content a{
+	display: none;
+}
+.header-content li a{
+	display: block;
+}
+
+
+@media screen and (max-width: 486px) {
+	.header-content{
+		display: block;
+		height: 60px;
+	}
+	#header-ul-right{
+		padding-top: 10px;
+		position: fixed;
+		right: 20px;
+
+	}
+	#header-ul-left{
+		padding-top: 10px;
+		position: fixed;
+		left: 0px;
+	}
+
+	.navbar a,.navbar-right a{
+		padding: 4px 4px 4px 10px;
+	}
+
+	.header-content a{
+	display: block;
+	border-right:none; border-bottom:1px dotted #ccc; background:#45b97c;
+                }
+	.navbar,.navbar-right{
+		display: none;
+		position: absolute;
+		margin-left: -30px;
+		margin-top: 10%;
+		width: 200px;
+	}
+	.header-content:hover ul{
+		display: block;
+	}
+
+	.navbar li,.navbar-right li{
+		float: none;
+	}
+	.header{
+		height: 50px;
+	}
+
 }
 
 
@@ -52,11 +106,29 @@ ul{
 	 right: 0;
 	 z-index: 9999;
 }	
+.footer{
+	 background-color: #45b97c;
+	 margin-top: 3%;
+	 width: 100%;
+	height: 70px;
+	position: fixed;
+	top: 86%;
+	 left: 0;
+	 right: 0;
+	 z-index: 9999;
+}	
 form,h1{
 	margin-top: 100px;
 }
+#test{
+	display: none;
+}
+input{
+	border:2px 2px 2px 2px;
+}
 
   </style>
+}
 <body>
 {% include 'header.html' %} 
 <h1>注册</h1>
@@ -78,8 +150,17 @@ Email: <input class="input" type="text" name="email" size="30">
 <span id="email-tip">{{eTip}}</span>
 <br />
 
+<div id="test">
+验证码: <input type="text" name="test" size="10">
+<span ></span>
+<br />
+</div>
+
+
+
 <input type="submit" value = "ok" />
 </form>
+
 
 
 {% include 'footer.html' %} 
@@ -89,14 +170,14 @@ Email: <input class="input" type="text" name="email" size="30">
 		//var inputs = document.getElementsByClassName('input')
 		var name = ['username-tip', 'pass-tip', 'repass-tip', 'email-tip']
 			//with(field) {
-		if (i == 0 && field.value.length < 6 && field.value) {
+		if (i == 0 && field.value.length < 3 && field.value) {
 			document.getElementById(name[i]).innerHTML = "too short";
 			return false
 		}
 
 		if (i == 3) {
 			apos = field.value.indexOf("@")
-			dotpos =field.value.lastIndexOf(".")
+			dotpos = field.value.lastIndexOf(".")
 			if (apos < 1 || dotpos - apos < 2) {
 				document.getElementById(name[i]).innerHTML = "Not a valid e-mail address!";
 				return false
@@ -117,8 +198,47 @@ Email: <input class="input" type="text" name="email" size="30">
 		//}
 	}
 
+
+	function requireIdcode () {
+		var email=document.getElementsByName('email')[0].value;;
+		var testEmail=document.getElementsByName('test')[0].value;
+		if (window.XMLHttpRequest) {
+			var xmlhttprequest = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			try {
+				var xmlhttprequest = new ActiveXObject("Msxm12.XMLHTTP");
+			} catch (e) {
+				try {
+					var xmlhttprequest = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {
+					alert("not support");
+				}
+			}
+		};
+
+		xmlhttprequest.open("POST", "http://127.0.0.1:8000/register/", true);
+		xmlhttprequest.setRequestHeader("Content-Type", "application/json");
+		xmlhttprequest.onreadystatechange = response;
+		xmlhttprequest.send('{"email":"' + email + '","testEmail":"' + testEmail + '","username":"","requireIdcode":"1"}');
+		function response(argument) {
+			if (xmlhttprequest.readyState == 4) {
+				if (xmlhttprequest.status == 200 || xmlhttprequest == 0) {
+					var message = xmlhttprequest.responseText;
+					var message = eval("(" + message + ")");
+					document.getElementById("email-tip").innerHTML = message.message
+				}
+			}
+
+		}
+	}
+
+
+                
+
+
 	function validate_form(thisform) {
 		//with(thisform) {
+		var testEmail = document.getElementsByName('test')[0].value;
 		var tip = ['Username', 'Password', 'Repeat PassWord', 'Email']
 		var inputs = document.getElementsByClassName('input')
 		for (var i = 0; i < inputs.length; i++) {
@@ -126,11 +246,88 @@ Email: <input class="input" type="text" name="email" size="30">
 				inputs[i].focus();
 				return false
 			}
+		} //}
+		if (i==inputs.length) {
+			       var test=document.getElementById('test');
+			       test.style.display="block"
+			       if (testEmail==null||testEmail=="") {
+			       	  requireIdcode()
+			   	   return false;
+			       };
+		};
+	}
+
+
+
+	document.getElementsByName('email')[0].onblur = function() {
+		var email = document.getElementsByName('email')[0].value;
+		var testEmail = document.getElementsByName('test')[0].value;
+		if (window.XMLHttpRequest) {
+			var xmlhttprequest = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			try {
+				var xmlhttprequest = new ActiveXObject("Msxm12.XMLHTTP");
+			} catch (e) {
+				try {
+					var xmlhttprequest = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {
+					alert("not support");
+				}
+			}
+		};
+
+		xmlhttprequest.open("POST", "http://127.0.0.1:8000/register/", true);
+		xmlhttprequest.setRequestHeader("Content-Type", "application/json");
+		xmlhttprequest.onreadystatechange = response;
+		xmlhttprequest.send('{"email":"' + email + '","testEmail":"' + testEmail + '","username":"","requireIdcode":""}');
+		function response(argument) {
+			if (xmlhttprequest.readyState == 4) {
+				if (xmlhttprequest.status == 200 || xmlhttprequest == 0) {
+					var message = xmlhttprequest.responseText;
+					var message = eval("(" + message + ")");
+					document.getElementById("email-tip").innerHTML = message.message
+				}
+			}
 
 		}
-
-
-		//}
 	}
+
+
+
+
+	document.getElementsByName('username')[0].onblur = function() {
+		var username = document.getElementsByName('username')[0].value;
+		var testEmail = document.getElementsByName('test')[0].value;
+		if (window.XMLHttpRequest) {
+			var xmlhttprequest = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			try {
+				var xmlhttprequest = new ActiveXObject("Msxm12.XMLHTTP");
+			} catch (e) {
+				try {
+					var xmlhttprequest = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {
+					alert("not support");
+				}
+			}
+		};
+
+		xmlhttprequest.open("POST", "http://127.0.0.1:8000/register/", true);
+		xmlhttprequest.setRequestHeader("Content-Type", "application/json");
+		xmlhttprequest.onreadystatechange = response;
+		xmlhttprequest.send('{"username":"' + username + '","testEmail":"' + testEmail + '","email":""}');
+
+		function response(argument) {
+			if (xmlhttprequest.readyState == 4) {
+				if (xmlhttprequest.status == 200 || xmlhttprequest == 0) {
+					var message = xmlhttprequest.responseText;
+					var message = eval("(" + message + ")");
+					document.getElementById("username-tip").innerHTML = message.message
+				}
+			}
+
+		}
+	}
+	
 </script>
 </html>
