@@ -18,6 +18,9 @@ import smtplib
 
 import random
 import json
+
+
+
 def index(request):
     return HttpResponse(u"wd!!sf!")
 
@@ -59,7 +62,8 @@ def login(request):
             if user:
                 request.session['username'] = username
                 comments=Comment.objects.filter(title=blog_list[0].title)
-                return HttpResponseRedirect('/', {'posts': blog_list, 'post': blog_list[0], 'username': username,'comments':comments})
+                #return render_to_response('home.html', {'posts': blog_list, 'post': blog_list[0], 'username': username,'comments':comments})
+                return HttpResponseRedirect('/')
             else:
                 print("Sad")
                 return HttpResponseRedirect('/login/')
@@ -110,13 +114,17 @@ def register(request):
                 user.username = username
                 user.password = password
                 user.email = email
+                user.userimg='/static/img/111.png'
                 user.save()
                 blog_list = BlogsPost.objects.all()
                 request.session['username'] = username
+                print(username)
+                print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                 for blog in blog_list:
                     blog.url = "/article/" + blog.title
                 comments=Comment.objects.filter(title=blog_list[0].title)
-                return HttpResponseRedirect('/', {'posts': blog_list, 'post': blog_list[0], 'username': username,'comments':comments})
+                return HttpResponseRedirect('/')
+                #return render_to_response('home.html', {'posts': blog_list, 'post': blog_list[0], 'username': username,'comments':comments})
             else: 
                 return render_to_response('register.html')
         else:
@@ -149,12 +157,14 @@ def register(request):
 
 
 def home(request, url='/'):
-        username = request.session.get('username', 'anybody')
+        request.session.set_expiry(0)
+        username = request.session.get('username', False)
+        print(username)
         if not username:
-            username = 'Tourist please login'
+            pass#username = 'Tourist please login'
         if request.method == "POST":
             comment=Comment()
-            comment.username=request.session.get('username', 'anybody')
+            comment.username=request.session.get('username', False)
             if url == '/':
                 blog_list = BlogsPost.objects.all()
                 thisBlog = BlogsPost.objects.get(title=blog_list[0].title)
@@ -163,7 +173,8 @@ def home(request, url='/'):
             else:
                 thisBlog = BlogsPost.objects.get(title=url)
                 comment.title=thisBlog.title
-                comment.time=datetime.datetime.now() 
+                comment.time=datetime.datetime.now()
+            comment.userimg='/static/img/111.png'
             comment.body=request.POST.get('content',False)
             comment.save()
             if url=='/':
@@ -187,3 +198,13 @@ def home(request, url='/'):
                 thisBlog = BlogsPost.objects.get(title=url)
                 comments=Comment.objects.filter(title=thisBlog.title)
                 return render_to_response('home.html', {'post': thisBlog, 'posts': blog_list, 'username': username,'comments':comments})
+
+
+def signOut(request):
+    request.session['username']=False
+    return HttpResponseRedirect('/')
+
+def setting(request):
+    print(request.session['username'])
+    return render_to_response('usersetting.html',{'username':request.session['username']})
+    

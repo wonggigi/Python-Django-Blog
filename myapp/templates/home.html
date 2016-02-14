@@ -1,318 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css"   href="/static/css/header.css" />
+<link rel="stylesheet" type="text/css"   href="/static/css/home.css" />
+<link rel="stylesheet" type="text/css"   href="/static/css/footer.css" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>欢迎光临</title>
 </head>
-<style>
-* {
-	border: 0;
-	margin: 0;
-	padding: 0;
-}
-ul{
-	list-style: none;
-}
-
-.header{
-  position: fixed;
-  background-color: #45b97c;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 9999;
-}
-.navbar{
-	list-style: none;
-	
-}
-
-.header li{
-	float: left;
-	padding: 4px 20px;
-}
-.header li a{
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	  color: white;
-	 text-decoration: none;
-}
-
-.header-content a{
-	display: none;
-}
-.header-content li a{
-	display: block;
-}
-
-
-@media screen and (max-width: 486px) {
-	.header-content{
-		display: block;
-		height: 60px;
-	}
-	#header-ul-right{
-		padding-top: 10px;
-		position: fixed;
-		right: 20px;
-
-	}
-	#header-ul-left{
-		padding-top: 10px;
-		position: fixed;
-		left: 0px;
-	}
-
-	.navbar a,.navbar-right a{
-		padding: 4px 4px 4px 10px;
-	}
-
-	.header-content a{
-	display: block;
-	border-right:none; border-bottom:1px dotted #ccc; background:#45b97c;
-                }
-	.navbar,.navbar-right{
-		display: none;
-		position: absolute;
-		margin-left: -30px;
-		margin-top: 10%;
-		width: 200px;
-	}
-	.header-content:hover ul{
-		display: block;
-	}
-
-	.navbar li,.navbar-right li{
-		float: none;
-	}
-	.header{
-		height: 50px;
-	}
-
-
-
-}
-
-.container{
-	width: 100%;
-	overflow:hidden
-	
-}
-
-.container-left{
-	
-	margin-top: 100px;
-	float: left;
-	width: 30%;
-	border-right: 2px solid #dddddd;
-	min-height: 500px;
-}
-.container-left a{
-	display: block;
-	 color: #444444;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	 text-decoration: none;
-	 padding-left: 5%;
-	 padding-top: 2%;
-}
-
-.displayList{
-               margin-top: 100px;
-	position: fixed;
-	display: block;
-	width: 50%;
-	border-right: 2px solid #dddddd;
-	min-height: 500px;
-                  top: 2%;
-	height :100%;
-	
-	z-index :9999
-}
-.displayList li{
-	margin-top: 10px;
-}
-.displayList a{
-	display: block;
-	border-right:none; border-bottom:1px dotted #ccc; background:#45b97c;
-	 color: white;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	 text-decoration: none;
-	 padding-left: 5%;
-	 padding-top: 2%;
-
-}
-
-.container-right{
-	
-	margin-top: 100px;
-	margin-left: 30px;
-	float: left;
-	width: 50%;
-
-}
-#main-topic{
-	height: 80px;
-	border-bottom: 2px solid #dddddd;
-}
-#main-content{
-	 color: #444444;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	padding-bottom: 40px;
-}
-
-.footer{
-	 background-color: #45b97c;
-	 margin-top: 3%;
-	 width: 100%;
-	height: 70px;
-	 left: 0;
-	 right: 0;
-	 z-index: 9999;
-}
-
-#comment{
-	padding-top: 18px;
-	font-size: 12px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #666;
-	border-top: 2px solid #dddddd;
-	
-}
-#comment span{
-	font-size: 20px;
-}
-#comment-form{
-	font-size: 18px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #666;
-	margin-left: 20px;
-	margin-top: 80px;
-	
-}
-#comment-form textarea{
-	border-left: 1px solid #dddddd;
-	border-right: 1px solid #dddddd;
-	border-bottom: 1px solid #dddddd;
-	border-top: 1px solid #dddddd;
-}
-.comment-item{
-	border-bottom: 1px solid #dddddd;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	margin-left: 20px;
-}
-
-
-
-@media screen and (max-width: 486px) {
-	.container-left{
-		display: none;
-		}
-		.container-right{
-			padding-left: 30px;
-			float: left;
-			width: 100%;
-		}
-#main-content{
-	font-size: 14px;
-	width: 80%;
-} 
-   #left-list-click{
-     position: fixed;
-     width: 40px;
-     height: 80px;
-    background-color: #45b97c;
-     top: 40%;
-       z-index: 9999;
-}
-#arrow-right {
-    width:0; 
-    height:0; 
-    margin-top: 20px;
-    margin-left: 10px;
-    border-top:20px solid transparent;
-    border-bottom: 20px solid transparent;
-    border-left: 20px solid white;
-  }
-}
-
-#maskLayer { 
-background-color:black; 
-width: 100%; 
-
-left: 0; 
-top: 0; 
-filter: alpha(opacity=60); 
-opacity: 0.5; 
-z-index: 1; 
-position: absolute; 
-
-} 
-
-
-
-td{
-		background-color: white;
-	               text-align: center; 
-		font-family:Arial;
-		font-weight:bold;
-		color: black;
-		height: 25px;
-	
-	}
-                #calendar_div{
-                	
-                	height: 199px;
-                	width: 296;
-
-                	
-                }
-                #calendar_d1{
-                              
-                	position: relative;
-                	left: 66px;
-                }
-	#calendar_tab{
-		width: 296px;
-		padding-right: 10px;
-		border-collapse: collapse;
-		
-		
-	}
-	.calendar_th{
-		
-		border-bottom: 1px solid grey;
-		 border-right: 1px solid grey;
-		height: 25px;
-
-	               
-
-	}
-
-	#calendar_d2{
-		border : 1px solid grey;
-		
-		width: 296px;
-		margin-top: 7px;
-	}
-	#calendar_bl{
-		background-image: url(l.png);
-		position: relative;
-		left: -55px;
-	}
-	#calendar_br{
-		background-image: url(r.png);
-		position: absolute;
-	               left: 200px;
-		
-	}
-
-
-
-
-
-
-
-</style>
 <body>
 {% include 'header.html' %}  
 
@@ -396,7 +91,9 @@ td{
                     <h1>Comments</h1>
                       {% for comment in comments %}
                       <div class="comment-item">
-                      <p><span>{{ comment.username }}</span> reply at {{comment.time}}</p>
+                      <img src={{comment.userimg}}>
+                      <p>
+                      <span>{{ comment.username }}</span> reply at {{comment.time}}</p>
                       <p>{{comment.body}}</p>
                       </div>
                       {% endfor%}
@@ -440,7 +137,13 @@ function hiddenMask (argument) {
 	document.getElementsByClassName('navbar')[0].style.display="none"
 }
 window.onload = function() {
-	alert("-_-还没做完")
+	//alert("-_-还没做完")
+	//alert(window.location.href)
+	//if (window.location.href=='http://127.0.0.1:8000/login/')
+	//{history.replaceState("s","x","http://127.0.0.1:8000/")
+	//window.location.replace('http://127.0.0.1:8000/');
+	//}//="http://127.0.0.1:8000/"
+	//	alert(window.location.href)
 	leftListClick.addEventListener('touchmove', displayMask, false);
 	leftListClick.addEventListener('mousemove', displayMask, false);
 	maskLayer.addEventListener('click',hiddenMask,false);

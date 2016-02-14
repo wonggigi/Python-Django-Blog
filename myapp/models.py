@@ -34,22 +34,25 @@ class BlogPostAdmin(admin.ModelAdmin):
 class User(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
+    userimg=models.CharField(max_length=50)
     email = models.EmailField()
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email')
+    list_display = ('username', 'email','userimg')
 
 
 
 class Comment(models.Model):
-	title = models.CharField(max_length=150)
-	username=models.CharField(max_length=50)
-	time=models.DateTimeField()
-	body=tinymce_models.HTMLField()  
+            userimg=models.CharField(max_length=50)
+            title = models.CharField(max_length=150)
+            username=models.CharField(max_length=50)
+            time=models.DateTimeField()
+            body=tinymce_models.HTMLField()
+              
 
 class CommentAdmin(admin.ModelAdmin):
-	list_display=('title','username','time','body')
+	list_display=('title','username','time','body','userimg')
 
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(User, UserAdmin)
