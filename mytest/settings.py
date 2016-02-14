@@ -35,7 +35,6 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'myapp',
     'tinymce',
 )
@@ -82,6 +81,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+ 
+# 其它 存放静态文件的文件夹，里面不能包含 STATIC_ROOT
+
+STATIC_ROOT = BASE_DIR+'/static'
+ 
+# 其它 存放静态文件的文件夹，里面不能包含 STATIC_ROOT
+
 
 TINYMCE_JS_URL = os.path.join(STATIC_URL, "tiny_mce/tiny_mce_src.js")
 TINYMCE_JS_ROOT = os.path.join(STATIC_URL, "tiny_mce")
@@ -96,3 +102,4 @@ TINYMCE_DEFAULT_CONFIG = {
 'width': 900,  
 'height': 400,  
 }  
+
