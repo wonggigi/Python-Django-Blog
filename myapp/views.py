@@ -114,7 +114,8 @@ def register(request):
                 user.username = username
                 user.password = password
                 user.email = email
-                user.userimg='/static/img/111.png'
+                
+                user.userimg='/static/img/jslogo.png'
                 user.save()
                 blog_list = BlogsPost.objects.all()
                 request.session['username'] = username
@@ -156,7 +157,7 @@ def register(request):
         return render_to_response('register.html')
 
 
-def home(request, url='/'):
+def home(request, articleType,url='/'):
         request.session.set_expiry(0)
         username = request.session.get('username', False)
         print(username)
@@ -166,7 +167,7 @@ def home(request, url='/'):
             comment=Comment()
             comment.username=request.session.get('username', False)
             if url == '/':
-                blog_list = BlogsPost.objects.all()
+                blog_list = BlogsPost.objects.filter(artcileType=articleType)
                 thisBlog = BlogsPost.objects.get(title=blog_list[0].title)
                 comment.title=thisBlog.title
                 comment.time=datetime.datetime.now() 
@@ -174,25 +175,24 @@ def home(request, url='/'):
                 thisBlog = BlogsPost.objects.get(title=url)
                 comment.title=thisBlog.title
                 comment.time=datetime.datetime.now()
-            comment.userimg='/static/img/111.png'
+            comment.userimg='/static/img/jslogo.jpg'
             comment.body=request.POST.get('content',False)
             comment.save()
             if url=='/':
                 comments=Comment.objects.filter(title=blog_list[0].title)
                 return HttpResponseRedirect('/', {'posts': blog_list, 'post': blog_list[0], 'username': username,'comments':comments})
             else:
-                blog_list = BlogsPost.objects.all()
+                blog_list = BlogsPost.objects.filter(artcileType=articleType)
                 thisBlog = BlogsPost.objects.get(title=url)
                 comments=Comment.objects.filter(title=thisBlog.title)
                 return HttpResponseRedirect(url, {'post': thisBlog, 'posts': blog_list, 'username': username,'comments':comments})
         else:
-            blog_list = BlogsPost.objects.all()
+            blog_list = BlogsPost.objects.filter(artcileType=articleType)
             for blog in blog_list:
-                blog.url = "/article/" + blog.title
+                blog.url = "/article/" +blog.artcileType + '/'+blog.title
             if url == '/':
                 comments=Comment.objects.filter(title=blog_list[0].title)
                 #print(blog_list[0].body)
-
                 return render_to_response('home.html', {'posts': blog_list, 'post': blog_list[0], 'username': username,'comments':comments})
             else:
                 thisBlog = BlogsPost.objects.get(title=url)
@@ -208,3 +208,10 @@ def setting(request):
     print(request.session['username'])
     return render_to_response('usersetting.html',{'username':request.session['username']})
     
+def index(request):
+    username = request.session.get('username', False)
+    comments=Comment.objects.filter(title='index')
+    blog_list = BlogsPost.objects.all()
+    for blog in blog_list: 
+        blog.url = "/article/" +blog.artcileType+'/'+ blog.title
+    return render_to_response('index.html', {'username': username,'comments':comments,'posts':blog_list})

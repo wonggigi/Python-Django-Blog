@@ -5,10 +5,11 @@
                    <li class="header-content"><a>Content</a>
                      
 	      <ul class="navbar">
-	            <li><a href="#">JavaScript</a></li>
-	            <li><a href="#">CSS</a></li>
-	            <li><a href="#">Python</a></li>
-	            <li><a href="#">NodeJS</a></li>
+	              <li><a href="/">Home</a></li>
+	            <li><a href="/article/javascript/JavaScript面向对象">JavaScript</a></li>
+	            <li><a href="/article/fe/客户端与服务器通信Ajax">web前端</a></li>
+	            <li><a href="/article/node/自动化构建工具Gulp">NodeJS</a></li>
+	            <li><a href="#/article/django/Django">Django</a></li>
 	       </ul>
 	    </li>
 	 </ul>
@@ -19,7 +20,7 @@
 	     <li class="header-content"><a>About Me</a>
 	          <ul class="navbar-right">
 	               <li><a href="https://github.com/wonggigi">My GitHub</a></li>
-	               <li><a href="http://www.wonggigi.com:3000/my_project">My Demo</a></li>
+	           
 	               <li><a href="http://www.wonggigi.com:3000">My Resume</a></li>
 	            </ul>
 	            </li>
@@ -29,10 +30,10 @@
 	            <li class="user-header-content">{% if not username%}
 	                        <a href="/login">Login</a> 
 	                         {% else%}
-	                         <a >Welcome {{username}} !</a>
+	                         <a >{{username}}</a>
 	                           <ul id="welcome">
-	           	                <li><a href="http://127.0.0.1:8000/user/setting">Settings</a></li>
-	                                <li><a href="http://127.0.0.1:8000/user/signout">Sign Out</a></li>
+	           	                <li><a href="#/user/setting">Settings</a></li>
+	                                <li><a href="/user/signout">Sign Out</a></li>
 	                          </ul>
 	                         {%endif%}
 	                   

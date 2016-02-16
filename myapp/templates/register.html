@@ -59,6 +59,7 @@ Email: <input class="input" type="text" name="email" size="30">
 {% include 'footer.html' %} 
 </body>
 <script type="text/javascript">
+var addr='http://www.wonggigi.com/register/'
 	function validate_required(field, txt, i) {
 		//var inputs = document.getElementsByClassName('input')
 		var name = ['username-tip', 'pass-tip', 'repass-tip', 'email-tip']
@@ -109,7 +110,7 @@ Email: <input class="input" type="text" name="email" size="30">
 			}
 		};
 
-		xmlhttprequest.open("POST", "http://127.0.0.1:8000/register/", true);
+		xmlhttprequest.open("POST", addr, true);
 		xmlhttprequest.setRequestHeader("Content-Type", "application/json");
 		xmlhttprequest.onreadystatechange = response;
 		xmlhttprequest.send('{"email":"' + email + '","testEmail":"' + testEmail + '","username":"","requireIdcode":"1"}');
@@ -169,7 +170,7 @@ Email: <input class="input" type="text" name="email" size="30">
 			}
 		};
 
-		xmlhttprequest.open("POST", "http://127.0.0.1:8000/register/", true);
+		xmlhttprequest.open("POST", addr, true);
 		xmlhttprequest.setRequestHeader("Content-Type", "application/json");
 		xmlhttprequest.onreadystatechange = response;
 		xmlhttprequest.send('{"email":"' + email + '","testEmail":"' + testEmail + '","username":"","requireIdcode":""}');
@@ -205,7 +206,7 @@ Email: <input class="input" type="text" name="email" size="30">
 			}
 		};
 
-		xmlhttprequest.open("POST", "http://127.0.0.1:8000/register/", true);
+		xmlhttprequest.open("POST", addr, true);
 		xmlhttprequest.setRequestHeader("Content-Type", "application/json");
 		xmlhttprequest.onreadystatechange = response;
 		xmlhttprequest.send('{"username":"' + username + '","testEmail":"' + testEmail + '","email":""}');

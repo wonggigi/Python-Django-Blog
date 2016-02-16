@@ -1,0 +1,75 @@
+
+
+<style type="text/css">
+* {
+    margin: 0;
+    padding: 0;
+}
+ 
+#div2 {
+    margin: auto;
+    width: 400px;
+    overflow: hidden;
+    left: 200px;
+}
+ 
+#div1 {
+    position: relative;
+    left: 0px;
+    width: 1200px;
+    height: 200px;
+    overflow: hidden;
+}
+ 
+#div1 li {
+    list-style-type: none;
+    float: left;
+    width: 400px;
+    height: 180px;
+   
+}
+ 
+img {
+    width: 400px;
+    height: 180px;
+}
+ 
+ul#ul1 {
+    position: relative;
+}
+#ul1 a{
+    text-decoration: none;
+    color: white;
+    position: relative;
+    top: -30px;
+  background-color: rgba(221, 221, 221, 0.8); 
+   padding-left: 30px;
+   padding-top: 3px;
+   display: block;
+   padding-bottom: 3px;
+    padding-right: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+@media screen and (max-width: 486px) {  
+     .grid2{
+        margin-left: 0px;
+    }  
+}  
+
+
+
+
+</style>
+
+
+    <div id="div2">
+        <div id="div1">
+            <ul id="ul1">
+                <li><div><img src="/static/img/jslogo.jpg" ><a href="/article/javascript/JavaScript异步与事件">JavaScript</a></div></li>
+                <li><div><img src="/static/img/weblogo.jpg" ><a  href="/article/fe/客户端与服务器通信Ajax">FE</a></div></li>
+                <li><div><img src="/static/img/nodelogo.jpg" ><a href="/article/node/自动化构建工具Gulp">Node</a></div></li>
+            
+            </ul>
+        </div>
+    </div>

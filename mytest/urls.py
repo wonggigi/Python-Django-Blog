@@ -8,8 +8,8 @@ admin.autodiscover()
  
 urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
-    url(r'^$', 'myapp.views.home', name='home'),  # new
-    url(r'^article/(\w+)', 'myapp.views.home', name='home'),
+    url(r'^$', 'myapp.views.index', name='index'),  # new
+    url(r'^article/(\w+)/(\w+)', 'myapp.views.home', name='home'),
     url(r'^add/(\d+)/(\d+)/$', 'myapp.views.add2', name='add2'),
     url(r'^add/$', 'myapp.views.add', name='add'), # 注意修改了这一行
     url(r'^admin/', include(admin.site.urls)),

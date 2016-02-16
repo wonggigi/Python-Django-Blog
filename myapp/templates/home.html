@@ -123,7 +123,9 @@ var leftListClick = document.getElementById('left-list-click');
 var list = document.getElementsByClassName('container-left')[0];
 var containerRight = document.getElementsByClassName('container-right')[0]
 var maskLayer=document.getElementById('maskLayer');
-function displayMask(argument) {
+function displayMask() {
+	
+	
 	list.setAttribute('class','displayList'); 
 	leftListClick.style.marginLeft = list.offsetWidth + "px"
 	document.getElementById('maskLayer').style.display = 'block';
@@ -151,12 +153,14 @@ window.onload = function() {
 	document.getElementsByClassName('header-content')[0].addEventListener('touchstart',function  () {
 		document.getElementsByClassName('navbar')[0].style.display="block"
 		displayMask()
+		document.getElementsByClassName('navbar-right')[0].style.display="none"
 		list.setAttribute('class','container-left');
 		leftListClick.style.marginLeft = 0+ "px"
 	})
 	document.getElementsByClassName('header-content')[1].addEventListener('touchstart',function  () {
 		document.getElementsByClassName('navbar-right')[0].style.display="block"
 		displayMask()
+		document.getElementsByClassName('navbar')[0].style.display="none"
 		list.setAttribute('class','container-left');
 		leftListClick.style.marginLeft = 0+ "px"
 	})

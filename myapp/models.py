@@ -25,10 +25,12 @@ class BlogsPost(models.Model):
     title = models.CharField(max_length=150)
     body = tinymce_models.HTMLField()  
     timestamp = models.DateTimeField()
+    commentNum=models.IntegerField()
+    artcileType=models.CharField(max_length=50)
 
 
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'timestamp')
+    list_display = ('title', 'timestamp','artcileType','commentNum')
 
 
 class User(models.Model):
