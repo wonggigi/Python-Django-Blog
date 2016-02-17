@@ -19,12 +19,6 @@ z-index: 1;
 position: absolute; 
 
 } 
-.article-tag{
-	color: #666!important;
-	font-size: 14px!important;
-}
-
-
     </style>
 </head>
 <body>
@@ -45,11 +39,11 @@ position: absolute;
          {% endautoescape %}
         </div>
 
-        
+        <span>阅读数</span>
+         <span>评论数</span>
 
        </div>
-        <span  class="article-tag">阅读数({{post.readNum}})</span>
-         <span class="article-tag">评论数({{post.commentNum}})</span>
+
  {% endfor%}
 
 </div>

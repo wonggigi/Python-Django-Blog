@@ -28,7 +28,7 @@
     height: 180px;
 }
  
-img {
+#ul11 img {
     width: 400px;
     height: 180px;
 }
@@ -56,13 +56,83 @@ ul#ul11 {
         margin-left: 0px;
     }  
 }  
+.lunbo-right-click{
+    background-color: rgba(221, 221, 221, 0.8); 
+    z-index: 99;
+    position: absolute;
+    top: 40px;
+    left: 370px;
+    display: inline-block;
+    width: 30px;
+    height: 80px;
+    
+}
+.lunbo-left-click{
+    background-color: rgba(221, 221, 221, 0.8); 
+    top: 40px;
+    z-index: 99;
+    position: absolute;
+    
+    display: inline-block;;
+width:30px;
+    height: 80px;
+    
+}
 
+.arrow-left {
+    position: absolute;
+    width:0; 
+    height:0; 
+    left: 6px;
+    top: 10px;
+        border-top:30px solid transparent;
+    border-bottom:30px solid transparent; 
+    border-right:14px solid white; 
 
+}
+
+.arrow-right {
+    position: absolute;
+    width:0; 
+    height:0; 
+    left: 8px;
+    top: 10px;
+    border-top:30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 14px solid white;
+
+}
+@media screen and (max-width: 400px) {  
+     #div11{
+        width: 100%;
+     }
+     #div12{
+        width: 100%;
+        height: 178px;
+        overflow: hidden;
+     }
+ #ul11 li{
+        width: 34%;
+    }
+    #ul11{
+        width: 300%;
+    }
+    img{
+        width: 100%!important;
+    }
+    .lunbo-right-click{
+    
+    left: 90%;
+    
+}
+}  
 </style>
 
 
     <div id="div12">
         <div id="div11">
+        <div class="lunbo-left-click"  id="leftclick1"><div class="arrow-left"></div></div>
+             <div class="lunbo-right-click" id="rightclick1"><div class="arrow-right"></div></div>
             <ul id="ul11">
                 <li><div><img src="/static/img/demoresume.png"><a href="http://www.wonggigi.com:3000/">Resume</a></div></li>
                 <li><div><img src="/static/img/demotank.png"><a href="http://www.wonggigi.com:3000/my_project">原生JavaScript坦克大战</a></div></li>

@@ -173,6 +173,8 @@ def home(request, articleType,url='/'):
                 comment.time=datetime.datetime.now() 
             else:
                 thisBlog = BlogsPost.objects.get(title=url)
+                thisBlog.commentNum=thisBlog.commentNum+1;
+                thisBlog.save();
                 comment.title=thisBlog.title
                 comment.time=datetime.datetime.now()
             comment.userimg='/static/img/jslogo.jpg'
@@ -196,6 +198,8 @@ def home(request, articleType,url='/'):
                 return render_to_response('home.html', {'posts': blog_list, 'post': blog_list[0], 'username': username,'comments':comments})
             else:
                 thisBlog = BlogsPost.objects.get(title=url)
+                thisBlog.readNum =thisBlog.readNum+1
+                thisBlog.save()
                 comments=Comment.objects.filter(title=thisBlog.title)
                 return render_to_response('home.html', {'post': thisBlog, 'posts': blog_list, 'username': username,'comments':comments})
 
@@ -214,4 +218,5 @@ def index(request):
     blog_list = BlogsPost.objects.all()
     for blog in blog_list: 
         blog.url = "/article/" +blog.artcileType+'/'+ blog.title
+        blog.commentNum=str(blog.commentNum)
     return render_to_response('index.html', {'username': username,'comments':comments,'posts':blog_list})
