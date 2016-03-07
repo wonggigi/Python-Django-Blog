@@ -19,6 +19,22 @@ z-index: 1;
 position: absolute; 
 
 } 
+.article-tag{
+	
+	color: #666!important;
+	font-size: 14px!important;
+}
+
+.article-type{
+	padding: 3px;
+	width: 60px;
+	height: 28px;
+	border: 1px solid transparent;
+	border-radius: 6px;
+	background-color: #45a97b;
+	color:white!important;
+}
+
     </style>
 </head>
 <body>
@@ -35,15 +51,18 @@ position: absolute;
        <h3> <a href={{ post.url }}>{{ post.title }}</a></h3>
        <div class="article-body">
          {% autoescape off %}
-                   {{post.body}}
+                   {{post.abstruct}}
          {% endautoescape %}
         </div>
 
-        <span>阅读数</span>
-         <span>评论数</span>
+        
 
        </div>
-
+        <span  class="article-tag">阅读数({{post.readNum}})</span>
+         <span class="article-tag">评论数({{post.commentNum}})</span>
+         <span  class="article-tag">分类:</span>
+         <span  class="article-tag article-type">JavaScript</span>
+           <span  class="article-tag article-type">Web前端</span>
  {% endfor%}
 
 </div>

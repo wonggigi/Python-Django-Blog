@@ -216,7 +216,11 @@ def index(request):
     username = request.session.get('username', False)
     comments=Comment.objects.filter(title='index')
     blog_list = BlogsPost.objects.all()
+ #   blog_list.sort(reverse=True);
+    blog_list=list(blog_list)
+    blog_list.sort(key=lambda blog: blog.timestamp,reverse=True)
     for blog in blog_list: 
         blog.url = "/article/" +blog.artcileType+'/'+ blog.title
         blog.commentNum=str(blog.commentNum)
+        blog.articleTag=blog.articleTag.split( )
     return render_to_response('index.html', {'username': username,'comments':comments,'posts':blog_list})

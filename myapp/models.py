@@ -28,10 +28,12 @@ class BlogsPost(models.Model):
     commentNum=models.IntegerField()
     readNum=models.IntegerField()
     artcileType=models.CharField(max_length=50)
+    abstruct=models.CharField(max_length=87)
+    articleTag=models.CharField(max_length=50)
 
 
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'timestamp','artcileType','commentNum','readNum')
+    list_display = ('title', 'timestamp','artcileType','commentNum','readNum','abstruct','articleTag')
 
 
 class User(models.Model):
