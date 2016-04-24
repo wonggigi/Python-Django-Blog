@@ -5,7 +5,9 @@
 <link rel="stylesheet" type="text/css"   href="/static/css/footer.css" />
 <link rel="stylesheet" type="text/css"   href="/static/css/indexs.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>欢迎光临</title>
+<meta name="keywords" content="王贞众,前端,实习,简历,求职,应届,frontend,resume,javascript">
+  <meta name="description" content="王贞众的简历">
+    <title>Wzz's Blog</title>
     <style>
     #maskLayer { 
 background-color:black; 
@@ -26,8 +28,9 @@ position: absolute;
 }
 
 .FE{
+  font-weight: bold;
 	padding: 3px;
-	width: 60px;
+	width: 66px;
 	text-align: center;
 	border: 1px solid transparent;
 	border-radius: 6px;
@@ -36,9 +39,10 @@ position: absolute;
 	display: inline-block;
 	font-size: 14px!important;
 }
-.javascript{
+.JavaScript{
 	padding: 3px;
-	width: 60px;
+  font-weight: bold;
+	width: 74px;
 	text-align: center;
 	border: 1px solid transparent;
 	border-radius: 6px;
@@ -49,7 +53,8 @@ position: absolute;
 }
 .jQuery{
 	padding: 3px;
-	width: 60px;
+	width: 66px;
+  font-weight: bold;
 	text-align: center;
 	border: 1px solid transparent;
 	border-radius: 6px;
@@ -59,29 +64,57 @@ position: absolute;
 	font-size: 14px!important;
 }
 .node{
+  font-weight: bold;
 	padding: 3px;
-	width: 60px;
+	width: 66px;
 	text-align: center;
 	border: 1px solid transparent;
 	border-radius: 6px;
-	background-color: black;
+	background-color: #4eee94;
 	color:white!important;
 	display: inline-block;
 	font-size: 14px!important;
 }
+.Ajax{
+  padding: 3px;
+  width: 66px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: #ffb2cc;
+  color:white!important;
+  display: inline-block;
+  font-size: 14px!important;
+}
 
+.AngularJS{
+  padding: 3px;
+  width: 66px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: red;
+  color:white!important;
+  display: inline-block;
+  font-size: 14px!important;
+}
 
+#h2-t{
+  font-size: 14px;
+  color: #666;
+}
 
     </style>
 </head>
 <body>
 {% include 'header.html' %}  
 
-
+{% include 'personal.html' %}  
 <div id="container">
 <div class="article">
-     <h2>Recent Article</h2>
- 
+     <h2>Recent Article<span id="h2-t">——学习笔记</span></h2>
 
      {% for post in posts %}
      <div class="article-item">
@@ -188,7 +221,7 @@ position: absolute;
 </body>
 <script type="text/javascript">
 (function() {
-    alert('-_-还没做完')
+
     var oUl = document.getElementById('ul1');
     var t, o;
     var speed = 0;

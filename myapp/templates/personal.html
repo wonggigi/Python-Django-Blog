@@ -1,0 +1,219 @@
+<style type="text/css">
+	#header-personal{
+		margin-top: 30px;
+		background: url(/static/img/bg.png);
+		background-repeat: no-repeat; 
+		background-size: 100% 100%;
+		height: 370px;
+		width: 100%;
+	
+	}
+	#sea{
+		height:62px;
+		width: 100%;
+		background:url(/static/img/wave.png);
+		background-repeat: repeat-x; 
+		background-size: 200px 150px;
+		z-index: 999;
+		position: fixed;
+		margin: 0 auto; 
+		bottom: 0%;
+
+	}
+
+	#header-personal h1{
+		color: white;
+		position: relative;
+		top: 50%;
+		text-align: center;
+	}
+	#header-person-tag {
+	text-align: center;
+		color: white;
+		position: relative;
+		top: 54%;
+	}
+	#header-person-tag span{
+		margin-right: 10px;
+	}
+	#sea{
+		opacity: 0.5;
+		 -webkit-animation:wave 10s infinite linear ;
+		 animation:wave 10s infinite linear ;
+	}
+	
+@keyframes wave
+	{
+	 0% {
+	 	background-size: 200px 150px;
+	 	background-position:200px 10px;
+ 	 }
+ 	 50%{
+ 	 	background-size: 200px   100px;
+ 	 	background-position:1000px -16px;
+ 	 }
+  	100%{
+  		background-size: 200px 150px;
+  		background-position:1800px 10px;
+	  }
+}
+@-webkit-keyframes wave
+	{
+	 0% {
+	 	background-size: 200px 150px;
+	 	background-position:200px 10px;
+ 	 }
+ 	 50%{
+ 	 	background-size: 200px   100px;
+ 	 	background-position:1000px -16px;
+ 	 }
+  	100%{
+  		background-size: 200px 150px;
+  		background-position:1800px 10px;
+	  }
+}
+#fish1{
+	top: 10%;
+	left: 14%;
+	 -webkit-animation:swimba 5s infinite linear ;
+	 animation:swimba 5s infinite linear ;
+	 transform:rotate(180deg);
+}
+#fish2{
+	top: 20%;
+	left: 16%;
+	 -webkit-animation:swim 5s infinite linear ;
+	 animation:swim 5s infinite linear ;
+}
+#fish3{
+	top: 10%;
+	left: 38%;
+	 -webkit-animation:swim 5s infinite linear ;
+	 animation:swim 5s infinite linear ;
+}
+#fish4{
+	top: 20%;
+	left: 42%;
+	 transform:rotate(90deg);
+	 -webkit-animation:swimjiu 5s infinite linear ;
+	 animation:swimjiu 5s infinite linear ;
+}
+#fish5{
+	top: 25%;
+	left: 44%;
+	 transform:rotate(180deg);
+	 -webkit-animation:swimba 5s infinite linear ;
+	 animation:swimba 5s infinite linear ;
+}
+#fish6{
+	top: 20%;
+	left: 60%;
+	 transform:rotate(90deg);
+	 -webkit-animation:swimjiu 5s infinite linear ;
+	 animation:swimjiu 5s infinite linear ;
+}
+#fish7{
+	top: 25%;
+	left: 62%;
+	 -webkit-animation:swim 5s infinite linear ;
+	 animation:swim 5s infinite linear ;
+}
+@keyframes swim
+	{
+	 0% {
+	 	transform:rotate(0deg);
+	 	 -webkit-transform:rotate(0deg);
+ 	 }
+ 	
+  	100%{
+  		transform:rotate(360deg);
+  		 -webkit-transform:rotate(360deg);
+	  }
+}
+@keyframes swimba
+	{
+	 0% {
+	 	transform:rotate(180deg);
+	 	 -webkit-transform:rotate(180deg);
+ 	 }
+ 	
+  	100%{
+  		transform:rotate(540deg);
+  		 -webkit-transform:rotate(540deg);
+	  }
+}
+@keyframes swimjiu
+	{
+	 0% {
+	 	transform:rotate(90deg);
+	 	 -webkit-transform:rotate(90deg);
+ 	 }
+ 	
+  	100%{
+  		transform:rotate(450deg);
+  		 -webkit-transform:rotate(450deg);
+	  }
+}
+
+
+@-webkit-keyframes swim
+	{
+	 0% {
+	 	transform:rotate(0deg);
+	 	 -webkit-transform:rotate(0deg);
+ 	 }
+ 	
+  	100%{
+  		transform:rotate(360deg);
+  		 -webkit-transform:rotate(360deg);
+	  }
+}
+@-webkit-keyframes swimba
+	{
+	 0% {
+	 	transform:rotate(180deg);
+	 	 -webkit-transform:rotate(180deg);
+ 	 }
+ 	
+  	100%{
+  		transform:rotate(540deg);
+  		 -webkit-transform:rotate(540deg);
+	  }
+}
+@-webkit-keyframes swimjiu
+	{
+	 0% {
+	 	transform:rotate(90deg);
+	 	 -webkit-transform:rotate(90deg);
+ 	 }
+ 	
+  	100%{
+  		transform:rotate(450deg);
+  		 -webkit-transform:rotate(450deg);
+	  }
+}
+.fish{
+	position: relative;
+	height: 179px!important;
+	width: 40px!important;
+}
+
+</style>
+<div id="header-personal" >
+	<h1>Sixwolves的读书笔记</h1>
+	<div id="header-person-tag">
+		<span>Web前端</span>
+		<span>JavaScript</span>
+		<span>Web开发</span>
+	</div>
+</div>
+<div id="sea">
+<img  class="fish" id="fish1"  src="/static/img/fish0.png">
+<img class="fish"  id="fish2" src="/static/img/fish0.png">
+<img class="fish"  id="fish3" src="/static/img/fish0.png">
+<img class="fish" id="fish4"  src="/static/img/fish0.png">
+<img class="fish" id="fish5" src="/static/img/fish0.png">
+<img class="fish"  id="fish6" src="/static/img/fish0.png">
+<img  class="fish" id="fish7" src="/static/img/fish0.png">
+
+</div>

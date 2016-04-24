@@ -1,0 +1,109 @@
+<style type="text/css">
+	#header-personal{
+		margin-top: 30px;
+		background-color: #ffad86;
+		height: 300px;
+		width: 100%;
+	}
+	#sea{
+		height: 90px;
+		width: 90px;
+		border-radius: 45px;
+		background-color: white;
+		position: relative;
+		left: 42%;
+		top: 20%;
+		overflow: hidden;
+	}
+	.wave1{
+		position: absolute;
+		height: 90px;
+		width: 90px;
+		background: #00ced1;
+		top: 80%;
+		left: -45px;
+		border-radius:45px; 
+		 -webkit-animation:waveone 2s infinite linear ;
+		 animation:waveone 2s infinite linear ;
+	}
+	@keyframes waveone
+	{
+	0%   {left:-45px; top:80%;}
+	25%  { left:0px; top:70%;}
+	50%  {left:45px; top:60%;}
+	75%  {left:0px; top:70%;}
+	100% { left:-45px; top:80%;}
+	}
+	@-webkit-keyframes wavaone
+{
+0%   {left:0px; top:0px;}
+25%  { left:200px; top:0px;}
+50%  { left:200px; top:200px;}
+75%  { left:0px; top:200px;}
+100% { left:0px; top:0px;}
+}
+
+.wave2{
+	position: absolute;
+		height: 90px;
+		width: 90px;
+		background: #00ced1;
+		top: 80%;
+		left: 45px;
+		border-radius:45px; 
+		 -webkit-animation:wavetwo 2s infinite linear ;
+		 animation:wavetwo 2s infinite linear ;
+}
+@keyframes wavetwo
+	{
+	0%   {left:45px; top:60%;}
+	25%  { left:0px; top:74%;}
+	50%  {left:-45px; top:78%;}
+	75%  {left:0px; top:68%;}
+	100% { left:45px; top:82%;}
+	}
+	@keyframes wavethree
+	{
+	0%   {left:90px; top:70%;}
+	25%  { left:50px; top:74%;}
+	50%  {left:20px; top:78%;}
+	75%  {left:10px; top:70%;}
+	100% { left:90px; top:72%;}
+	}
+	.wave3{
+		position: absolute;
+		height: 90px;
+		width: 90px;
+		background: #00ced1;
+		top: 80%;
+		left: 90px;
+		border-radius:45px; 
+		 -webkit-animation:wavethree 2s infinite linear ;
+		 animation:wavethree 2s infinite linear ;
+	}
+	.wave4{
+		position: absolute;
+		height: 90px;
+		width: 90px;
+		background: #00ced1;
+		top: 80%;
+		border-radius: 45px;
+	}
+	#header-personal h1{
+		color: white;
+		position: relative;
+		top: 28%;
+		text-align: center;
+	}
+
+</style>
+<div id="header-personal">
+	<div id="sea">
+		<div class="wave1"></div>
+		<div class="wave2"></div>
+		<div class="wave3"></div>
+		<div class="wave4"></div>
+	</div>
+	<h1>Sixwolves的读书笔记</h1>
+	<h2></h2>
+</div>
